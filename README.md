@@ -21,7 +21,7 @@ Este proyecto está desarrollado con:
 
 ## Demo
 
-Puedes ver el portfolio en línea aquí: [https://next-js-portfolio-seven.vercel.app](https://next-js-portfolio-seven.vercel.app)
+Puedes ver el portfolio en línea aquí: [https://eliasjiminian.vercel.app/](https://eliasjiminian.vercel.app/)
 
 ## Contacto
 
