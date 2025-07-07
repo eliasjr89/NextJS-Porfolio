@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 
-// Utilizamos importación dinámica correctamente
 const ExperienceSection = dynamic(
   () =>
     import("@/app/about/ExperienceSection").then(
