@@ -10,16 +10,24 @@ export default function ToggleThemeButton() {
 
   return (
     <button
-      className="btn btn-outline-secondary flex items-center justify-center cursor-pointer"
+      className="btn btn-outline-secondary flex items-center justify-center cursor-pointer 
+                 w-10 h-10 p-0"
       onClick={toggleTheme}
       aria-label="Toggle theme"
       type="button"
-      style={{ width: 40, height: 40, padding: 0 }}
     >
       {theme === "light" ? (
-        <FiMoon aria-hidden="true" size={20} />
+        <FiMoon
+          aria-hidden="true"
+          size={20}
+          className="transition-colors duration-300 ease-in-out text-gray-900 dark:text-gray-100"
+        />
       ) : (
-        <FiSun aria-hidden="true" size={20} />
+        <FiSun
+          aria-hidden="true"
+          size={20}
+          className="transition-colors duration-300 ease-in-out text-gray-900 dark:text-gray-100"
+        />
       )}
     </button>
   );

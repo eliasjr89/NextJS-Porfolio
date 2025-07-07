@@ -22,7 +22,7 @@ export const TextGenerateEffect = ({
       "span",
       {
         opacity: 1,
-        filter: filter ? "blur(0px)" : "none",
+        filter: filter ? ["blur(10px)", "blur(0px)"] : "none",
       },
       {
         duration: duration,

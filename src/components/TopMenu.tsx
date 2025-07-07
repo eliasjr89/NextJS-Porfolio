@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FiChevronUp, FiChevronDown } from "react-icons/fi";
+import { FiChevronUp } from "react-icons/fi";
 import { HomeButton } from "./HomeButton";
 import { ProjectsButton } from "./ProjectsButton";
 import { ContactButton } from "./ContactButton";
@@ -23,11 +23,11 @@ export default function TopMenu() {
   if (!hasMounted) return null;
 
   return (
-    <div className="w-full bg-grey/10 dark:bg-grey/10 backdrop-blur-md border-b border-gray-700 sticky top-4 z-30 rounded-md mx-auto max-w-xl transition-colors duration-300 ease-in-out">
+    <div className="w-full bg-gray-100/10 dark:bg-black/10 backdrop-blur-md border-b border-gray-700 sticky top-4 z-30 rounded-md mx-auto max-w-xl transition-colors duration-300 ease-in-out">
       <div className="flex justify-center py-2">
         <button
           onClick={handleToggle}
-          className="text-white cursor-pointer p-2 hover:bg-gray-700 dark:hover:bg-gray-500 rounded-full transition-all"
+          className="text-black dark:text-white cursor-pointer p-2 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-full transition-colors duration-300 ease-in-out"
           aria-label={isOpen ? "Close menu" : "Open menu"}
           title={isOpen ? "Close menu" : "Open menu"}
         >
@@ -35,17 +35,7 @@ export default function TopMenu() {
             animate={{ rotate: isOpen ? 0 : 180 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            {isOpen ? (
-              <FiChevronUp
-                size={25}
-                className="text-black dark:text-white transition-colors duration-300 ease-in-out"
-              />
-            ) : (
-              <FiChevronDown
-                size={25}
-                className="text-black dark:text-white transition-colors duration-300 ease-in-out"
-              />
-            )}
+            <FiChevronUp size={25} />
           </motion.div>
         </button>
       </div>

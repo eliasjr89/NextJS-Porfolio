@@ -22,9 +22,12 @@ export function SocialButtons() {
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative flex items-center rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 p-4 border border-gray-700 hover:bg-blue-600 hover:text-white hover:shadow-lg dark:hover:shadow-white/35"
+          className="relative flex items-center rounded-full backdrop-blur-md p-4 border border-gray-700 hover:shadow-lg dark:hover:shadow-white/35"
         >
-          <FaLinkedin size={24} />
+          <FaLinkedin
+            size={24}
+            className="text-gray-500 hover:text-blue-600 transition-colors duration-300 ease-in-out"
+          />
         </motion.div>
       </a>
 
@@ -38,9 +41,12 @@ export function SocialButtons() {
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative flex items-center rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 p-4 border border-gray-700 hover:bg-gray-900 hover:text-white hover:shadow-lg dark:hover:shadow-white/35"
+          className="relative flex items-center rounded-full backdrop-blur-md p-4 border border-gray-700 hover:shadow-lg dark:hover:shadow-white/35"
         >
-          <FaGithub size={24} />
+          <FaGithub
+            size={24}
+            className="text-gray-500 hover:text-gray-900 transition-colors duration-300 ease-in-out"
+          />
         </motion.div>
       </a>
 
@@ -53,9 +59,12 @@ export function SocialButtons() {
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative flex items-center rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 p-4 border border-gray-700 hover:bg-red-600 hover:text-white hover:shadow-lg dark:hover:shadow-white/35"
+          className="relative flex items-center rounded-full backdrop-blur-md p-4 border border-gray-700 hover:shadow-lg dark:hover:shadow-white/35"
         >
-          <SiGmail size={24} />
+          <SiGmail
+            size={24}
+            className="text-gray-500 hover:text-red-600 transition-colors duration-300 ease-in-out"
+          />
         </motion.div>
       </a>
 
@@ -69,9 +78,12 @@ export function SocialButtons() {
         <motion.div
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
-          className="relative flex items-center rounded-full backdrop-blur-md bg-white/10 dark:bg-black/10 p-4 border border-gray-700 hover:bg-green-600 hover:text-white hover:shadow-lg dark:hover:shadow-white/35"
+          className="relative flex items-center rounded-full backdrop-blur-md p-4 border border-gray-700 hover:shadow-lg dark:hover:shadow-white/35"
         >
-          <FaWhatsapp size={24} />
+          <FaWhatsapp
+            size={24}
+            className="text-gray-500 hover:text-green-600  transition-colors duration-300 ease-in-out "
+          />
         </motion.div>
       </a>
     </div>
