@@ -21,8 +21,8 @@ Este proyecto está desarrollado con:
 
 ## Demo
 
-Puedes ver el portfolio en línea aquí: [https://miportfolio.com](https://miportfolio.com) <!-- Cambia por tu URL real -->
+Puedes ver el portfolio en línea aquí: [https://next-js-portfolio-seven.vercel.app](https://next-js-portfolio-seven.vercel.app)
 
 ## Contacto
 
-Si quieres ponerte en contacto conmigo, visita la sección de contacto del portfolio o envíame un email a: [tucorreo@ejemplo.com](mailto:tucorreo@ejemplo.com)
+Si quieres ponerte en contacto conmigo, visita la sección de contacto del portfolio o envíame un email a: [eliasjiminian@gmail.com](mailto:eliasjiminian@gmail.com)

@@ -5,6 +5,7 @@ import "./globals.css";
 import TopMenu from "@/components/TopMenu";
 import Footer from "@/components/Footer";
 import { DashboardLayoutProps } from "@/types/types";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Elias Jiminián | Portfolio",
@@ -26,6 +27,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <body className="antialiased bg-background text-foreground flex flex-col min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TopMenu />
+          <Analytics />
 
           <div className="fixed inset-0 z-[-1]">
             <Vortex backgroundColor="transparent" className="w-full h-full" />
