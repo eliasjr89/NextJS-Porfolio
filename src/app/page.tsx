@@ -1,7 +1,7 @@
 "use client";
 
-import { SocialButtons } from "@/components/SocialButtons";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect/TextGenerateEffect";
+import { SocialButtons } from "./components/SocialButtons";
+import { TextGenerateEffect } from "./components/ui/text-generate-effect/TextGenerateEffect";
 
 export default function HomePage() {
   return (

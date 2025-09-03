@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Vortex } from "@/components/ui/vortex/vortex";
 import "./globals.css";
-import TopMenu from "@/components/TopMenu";
-import Footer from "@/components/Footer";
-import { DashboardLayoutProps } from "@/types/types";
+import { DashboardLayoutProps } from "@/app/types/types";
 import { Analytics } from "@vercel/analytics/next";
+import TopMenu from "./components/TopMenu";
+import Footer from "./components/Footer";
+import { Vortex } from "./components/ui/vortex/vortex";
 
 export const metadata: Metadata = {
   title: "Elias Jiminián | Portfolio",
