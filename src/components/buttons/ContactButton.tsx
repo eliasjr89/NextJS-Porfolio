@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { FiMail } from "react-icons/fi";
 

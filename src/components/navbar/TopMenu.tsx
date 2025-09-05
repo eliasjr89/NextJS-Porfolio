@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { FiChevronUp } from "react-icons/fi";
-import { HomeButton } from "./HomeButton";
-import { ProjectsButton } from "./ProjectsButton";
-import { ContactButton } from "./ContactButton";
-import { AboutButton } from "./AboutButton";
-import ToggleThemeButton from "./ToggleThemeButton";
-import { SkillsButton } from "./SkillsButton";
+import { HomeButton } from "../buttons/HomeButton";
+import { ProjectsButton } from "../buttons/ProjectsButton";
+import { ContactButton } from "../buttons/ContactButton";
+import { AboutButton } from "../buttons/AboutButton";
+import ToggleThemeButton from "../buttons/ToggleThemeButton";
+import { SkillsButton } from "../buttons/SkillsButton";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function TopMenu() {

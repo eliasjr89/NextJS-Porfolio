@@ -1,7 +1,7 @@
 "use client";
 
-import { Timeline } from "@/components/ui/timeline/Timeline";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect/TextGenerateEffect";
+import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
+import { Timeline } from "@/components/timeline/Timeline";
 
 const educationTimelineData = [
   {

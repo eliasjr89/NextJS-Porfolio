@@ -1,7 +1,7 @@
 "use client";
 
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip/AnimatedTooltip";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect/TextGenerateEffect";
+import { AnimatedTooltip } from "@/components/animated-tooltip/AnimatedTooltip";
+import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
 
 export default function SkillsPage() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import FormContact from "../../components/ui/contact-form/FormContact";
-import { TextGenerateEffect } from "../../components/ui/text-generate-effect/TextGenerateEffect";
+import FormContact from "@/components/contact-form/FormContact";
+import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
 
 export default function ContactPage() {
   return (

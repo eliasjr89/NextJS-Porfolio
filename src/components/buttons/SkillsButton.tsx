@@ -1,22 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import { VscCode } from "react-icons/vsc";
+import { GiBrain } from "react-icons/gi";
 
-export const ProjectsButton = () => {
+export const SkillsButton = () => {
   return (
-    <Link href="/projects" passHref>
+    <Link href="/skills" passHref>
       <button
         className="
           btn btn-outline-secondary flex items-center justify-center 
           w-10 h-10 p-0 cursor-pointer
           transition-colors duration-300 ease-in-out
           text-gray-900 dark:text-gray-100"
-        aria-label="View Projects"
-        title="Ver Proyectos"
+        aria-label="View Skills"
+        title="Ver Habilidades"
         type="button"
       >
-        <VscCode
+        <GiBrain
           size={20}
           className="transition-colors duration-300 ease-in-out text-gray-900 dark:text-gray-100"
         />
