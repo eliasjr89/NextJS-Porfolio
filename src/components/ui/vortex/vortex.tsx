@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 import { useVortexAnimation } from "./useVortexAnimation";
 import type { VortexProps } from "./types";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 
 export const Vortex = (props: VortexProps) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);

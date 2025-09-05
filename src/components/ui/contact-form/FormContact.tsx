@@ -6,7 +6,7 @@ import { Input } from "./Input";
 import { Textarea } from "./TextArea";
 import { Button } from "../stateful-button/Button";
 import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/lib/utils";
 
 export default function FormContact() {
   const [formData, setFormData] = useState({
