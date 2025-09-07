@@ -1,14 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { FiHome, FiUser, FiMail } from "react-icons/fi";
+import { VscCode } from "react-icons/vsc";
+import { GiBrain } from "react-icons/gi";
 import { FiChevronUp } from "react-icons/fi";
-import { HomeButton } from "../buttons/HomeButton";
-import { ProjectsButton } from "../buttons/ProjectsButton";
-import { ContactButton } from "../buttons/ContactButton";
-import { AboutButton } from "../buttons/AboutButton";
-import ToggleThemeButton from "../buttons/ToggleThemeButton";
-import { SkillsButton } from "../buttons/SkillsButton";
 import { motion, AnimatePresence } from "framer-motion";
+import ToggleThemeButton from "../buttons/ToggleThemeButton";
+import { NavButton } from "../buttons/NavButton";
 
 export default function TopMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -49,11 +48,11 @@ export default function TopMenu() {
             exit={{ opacity: 0, maxHeight: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <HomeButton />
-            <AboutButton />
-            <SkillsButton />
-            <ProjectsButton />
-            <ContactButton />
+            <NavButton href="/" label="Inicio" icon={FiHome} />
+            <NavButton href="/about" label="About Me" icon={FiUser} />
+            <NavButton href="/skills" label="View Skills" icon={GiBrain} />
+            <NavButton href="/projects" label="View Projects" icon={VscCode} />
+            <NavButton href="/contact" label="Contact" icon={FiMail} />
             <ToggleThemeButton />
           </motion.div>
         )}
