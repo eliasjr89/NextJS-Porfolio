@@ -1,13 +1,13 @@
 "use client";
 
 import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
-import { SocialButtons } from "../components/buttons/SocialButtons";
+import { SocialLinks } from "../components/buttons/SocialLinks";
 
 export default function HomePage() {
   return (
     <main className="flex flex-col items-center justify-start mt-20 py-6 px-6 text-center h-full text-[var(--foreground)] transition-colors duration-300 ease-in-out relative">
       <TextGenerateEffect
-        words="Hi, I'm Elías 👋"
+        words="Hi, I'm Elías Jiminián."
         className="text-4xl text-white md:text-6xl font-bold transition-colors duration-300 ease-in-out"
         duration={1.2}
         aria-live="polite"
@@ -21,7 +21,7 @@ export default function HomePage() {
       />
 
       <div className="mt-12">
-        <SocialButtons />
+        <SocialLinks />
       </div>
     </main>
   );

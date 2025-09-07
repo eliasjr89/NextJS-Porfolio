@@ -8,6 +8,7 @@ import { FiChevronUp } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import ToggleThemeButton from "../buttons/ToggleThemeButton";
 import { NavButton } from "../buttons/NavButton";
+import LanguageToggleButton from "../buttons/LanguageToggleButton";
 
 export default function TopMenu() {
   const [isOpen, setIsOpen] = useState(true);
@@ -54,6 +55,7 @@ export default function TopMenu() {
             <NavButton href="/projects" label="View Projects" icon={VscCode} />
             <NavButton href="/contact" label="Contact" icon={FiMail} />
             <ToggleThemeButton />
+            <LanguageToggleButton />
           </motion.div>
         )}
       </AnimatePresence>
