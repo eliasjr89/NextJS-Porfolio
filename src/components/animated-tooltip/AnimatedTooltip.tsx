@@ -1,5 +1,7 @@
 "use client";
 
+import { TextGenerateEffect } from "../text-generate-effect/TextGenerateEffect";
+import { useTranslation } from "@/hooks/useTranslations";
 import React, { useState, useMemo, useCallback } from "react";
 import {
   motion,
@@ -8,6 +10,7 @@ import {
   useMotionValue,
   useSpring,
 } from "motion/react";
+
 import {
   SiJavascript,
   SiTypescript,
@@ -39,77 +42,56 @@ import {
   SiOpenai,
 } from "react-icons/si";
 
-import { TextGenerateEffect } from "../text-generate-effect/TextGenerateEffect";
-
 const skillsData = [
   {
     id: 1,
     name: "JavaScript (ES6+)",
-    designation: "Front-end",
+    designation: "frontend",
     Icon: SiJavascript,
   },
-  { id: 2, name: "TypeScript", designation: "Front-end", Icon: SiTypescript },
-  { id: 3, name: "HTML5", designation: "Front-end", Icon: SiHtml5 },
-  { id: 4, name: "CSS3", designation: "Front-end", Icon: SiCss3 },
-  { id: 5, name: "SCSS", designation: "Front-end", Icon: SiSass },
-  { id: 6, name: "Vue.js", designation: "Front-end", Icon: SiVuedotjs },
-  { id: 7, name: "React.js", designation: "Front-end", Icon: SiReact },
-  { id: 8, name: "Angular", designation: "Front-end", Icon: SiAngular },
-  { id: 9, name: "Bootstrap", designation: "Front-end", Icon: SiBootstrap },
-  { id: 10, name: "Tailwind", designation: "Front-end", Icon: SiTailwindcss },
-  { id: 15, name: "Express.js", designation: "Back-end", Icon: SiExpress },
-  { id: 16, name: "Flask", designation: "Back-end", Icon: SiFlask },
+  { id: 2, name: "TypeScript", designation: "frontend", Icon: SiTypescript },
+  { id: 3, name: "HTML5", designation: "frontend", Icon: SiHtml5 },
+  { id: 4, name: "CSS3", designation: "frontend", Icon: SiCss3 },
+  { id: 5, name: "SCSS", designation: "frontend", Icon: SiSass },
+  { id: 6, name: "Vue.js", designation: "frontend", Icon: SiVuedotjs },
+  { id: 7, name: "React.js", designation: "frontend", Icon: SiReact },
+  { id: 8, name: "Angular", designation: "frontend", Icon: SiAngular },
+  { id: 9, name: "Bootstrap", designation: "frontend", Icon: SiBootstrap },
+  { id: 10, name: "Tailwind", designation: "frontend", Icon: SiTailwindcss },
+  { id: 15, name: "Express.js", designation: "backend", Icon: SiExpress },
+  { id: 16, name: "Flask", designation: "backend", Icon: SiFlask },
   {
     id: 18,
     name: "JWT (Authentication)",
-    designation: "Back-end",
+    designation: "backend",
     Icon: SiJsonwebtokens,
   },
-  { id: 19, name: "MongoDB", designation: "Back-end", Icon: SiMongodb },
+  { id: 19, name: "MongoDB", designation: "backend", Icon: SiMongodb },
   {
     id: 20,
     name: "PostgreSQL (basic)",
-    designation: "Back-end",
+    designation: "backend",
     Icon: SiPostgresql,
   },
-  { id: 21, name: "MySQL", designation: "Back-end", Icon: SiMysql },
-  { id: 22, name: "Jest", designation: "Testing & Tools", Icon: SiJest },
-  { id: 23, name: "Jasmine", designation: "Testing & Tools", Icon: SiJasmine },
-  { id: 24, name: "Git", designation: "Testing & Tools", Icon: SiGit },
-  { id: 25, name: "GitHub", designation: "Testing & Tools", Icon: SiGithub },
-  {
-    id: 26,
-    name: "Bitbucket",
-    designation: "Testing & Tools",
-    Icon: SiBitbucket,
-  },
-  { id: 28, name: "Postman", designation: "Testing & Tools", Icon: SiPostman },
-  { id: 29, name: "Pycharm", designation: "Testing & Tools", Icon: SiPycharm },
-  { id: 31, name: "Docker", designation: "Testing & Tools", Icon: SiDocker },
-  { id: 32, name: "Jenkins", designation: "Testing & Tools", Icon: SiJenkins },
-
-  {
-    id: 33,
-    name: "TensorFlow",
-    designation: "AI & Machine Learning",
-    Icon: SiTensorflow,
-  },
-  {
-    id: 34,
-    name: "PyTorch",
-    designation: "AI & Machine Learning",
-    Icon: SiPytorch,
-  },
-  {
-    id: 35,
-    name: "OpenAI API",
-    designation: "AI & Machine Learning",
-    Icon: SiOpenai,
-  },
+  { id: 21, name: "MySQL", designation: "backend", Icon: SiMysql },
+  { id: 22, name: "Jest", designation: "testing", Icon: SiJest },
+  { id: 23, name: "Jasmine", designation: "testing", Icon: SiJasmine },
+  { id: 24, name: "Git", designation: "testing", Icon: SiGit },
+  { id: 25, name: "GitHub", designation: "testing", Icon: SiGithub },
+  { id: 26, name: "Bitbucket", designation: "testing", Icon: SiBitbucket },
+  { id: 28, name: "Postman", designation: "testing", Icon: SiPostman },
+  { id: 29, name: "Pycharm", designation: "testing", Icon: SiPycharm },
+  { id: 31, name: "Docker", designation: "testing", Icon: SiDocker },
+  { id: 32, name: "Jenkins", designation: "testing", Icon: SiJenkins },
+  { id: 33, name: "TensorFlow", designation: "ai", Icon: SiTensorflow },
+  { id: 34, name: "PyTorch", designation: "ai", Icon: SiPytorch },
+  { id: 35, name: "OpenAI API", designation: "ai", Icon: SiOpenai },
 ];
 
 export const AnimatedTooltip = () => {
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const springConfig = { stiffness: 100, damping: 5 };
   const x = useMotionValue(0);
   const rotate = useSpring(
@@ -142,10 +124,15 @@ export const AnimatedTooltip = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4">
-      {Object.entries(groupedSkills).map(([section, skills]) => (
-        <section key={section} className="mb-12">
+      {Object.entries(groupedSkills).map(([sectionKey, skills]) => (
+        <section key={sectionKey} className="mb-12">
           <h2 className="mb-6 text-3xl font-extrabold text-center text-gray-900 dark:text-gray-100">
-            <TextGenerateEffect words={section} duration={0.5} />
+            <TextGenerateEffect
+              words={
+                t.skillSections[sectionKey as keyof typeof t.skillSections]
+              } // 👈 traducción dinámica
+              duration={0.5}
+            />
           </h2>
           <div className="flex flex-wrap justify-center gap-6">
             {skills.map(({ id, name, Icon }) => (
@@ -159,7 +146,9 @@ export const AnimatedTooltip = () => {
                 <div
                   className="w-16 h-16 rounded-full bg-transparent flex items-center justify-center shadow-lg cursor-pointer transition-transform duration-300 group-hover:scale-110 backdrop-blur-sm"
                   role="button"
-                  aria-label={`Skill: ${name} (${section})`}
+                  aria-label={`Skill: ${name} (${
+                    t.skillSections[sectionKey as keyof typeof t.skillSections]
+                  })`}
                 >
                   <Icon className="w-8 h-8" />
                 </div>
@@ -184,7 +173,13 @@ export const AnimatedTooltip = () => {
                       className="absolute -top-16 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center justify-center rounded-md bg-black/80 px-4 py-2 text-xs text-white shadow-xl backdrop-blur-sm"
                     >
                       <div className="font-semibold">{name}</div>
-                      <div className="text-[10px] text-gray-300">{section}</div>
+                      <div className="text-[10px] text-gray-300">
+                        {
+                          t.skillSections[
+                            sectionKey as keyof typeof t.skillSections
+                          ]
+                        }
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -27,7 +27,7 @@ export function EducationSection() {
   return (
     <section className="max-w-4xl mx-auto px-6 py-20">
       <TextGenerateEffect
-        words="Education"
+        words={t.education}
         className="text-3xl text-center mb-8 text-gray-900 dark:text-gray-100 transition-colors duration-300"
       />
       <Timeline data={educationTimelineData} />

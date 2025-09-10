@@ -6,6 +6,12 @@ export const dictionary = {
     skills: "Habilidades",
     education: "Educación",
     contactTitle: "Contacto",
+    skillSections: {
+      frontend: "Frontend",
+      backend: "Backend",
+      testing: "Pruebas & Herramientas",
+      ai: "IA & Machine Learning",
+    },
     timeline: [
       {
         year: "2024 - 2025",
@@ -101,6 +107,12 @@ export const dictionary = {
     skills: "Skills",
     education: "Education",
     contactTitle: "Contact Me",
+    skillSections: {
+      frontend: "Front-end",
+      backend: "Back-end",
+      testing: "Testing & Tools",
+      ai: "AI & Machine Learning",
+    },
     timeline: [
       {
         year: "2024 - 2025",

@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/context/LanguageContex";
 import { motion, AnimatePresence } from "framer-motion";
-import { MdLanguage } from "react-icons/md";
+import { Languages } from "lucide-react"; // 👈 ícono moderno de idioma
 
 export default function ToggleLanguageButton() {
   const { language, toggleLanguage } = useLanguage();
@@ -28,7 +28,7 @@ export default function ToggleLanguageButton() {
           transition={{ duration: 0.3 }}
           className="flex items-center justify-center"
         >
-          <MdLanguage size={20} className="text-gray-900 dark:text-gray-100" />
+          <Languages size={20} className="text-gray-900 dark:text-gray-100" />
         </motion.div>
       </AnimatePresence>
     </button>

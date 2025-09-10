@@ -7,7 +7,6 @@ import { useTranslation } from "@/hooks/useTranslations";
 export function ExperienceSection() {
   const { t } = useTranslation();
 
-  // Construimos los datos del timeline desde el diccionario
   const experienceTimelineData = t.experienceTimeline.map((item) => ({
     title: item.year,
     content: (
@@ -34,7 +33,7 @@ export function ExperienceSection() {
   return (
     <section className="max-w-4xl mx-auto px-6 py-20">
       <TextGenerateEffect
-        words="Professional Experience"
+        words={t.experienceTitle}
         className="text-3xl text-center mb-8 text-gray-900 dark:text-gray-100 transition-colors duration-300"
       />
       <Timeline data={experienceTimelineData} />

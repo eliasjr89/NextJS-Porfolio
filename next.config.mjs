@@ -1,14 +1,16 @@
-import withBundleAnalyzer from "@next/bundle-analyzer";
-
-const bundleAnalyzerConfig = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["example.com", "d33wubrfki0l68.cloudfront.net"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "shot.screenshotapi.net",
+        port: "",
+        pathname: "/screenshot",
+      },
+    ],
   },
 };
 
-export default bundleAnalyzerConfig(nextConfig);
+export default nextConfig;
