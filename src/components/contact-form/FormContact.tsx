@@ -8,7 +8,7 @@ import { Button } from "../stateful-button/Button";
 import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContex";
-import { dictionary } from "@/locale/dictionary";
+import { dictionary } from "../../locale/dictionary";
 
 export default function FormContact() {
   const { language } = useLanguage(); // 'ES' | 'EN'

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContex";
-import { dictionary } from "@/locale/dictionary";
+import { dictionary } from "../locale/dictionary";
 import { Language } from "@/types/types";
 
 export function useTranslation() {

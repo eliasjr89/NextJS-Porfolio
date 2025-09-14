@@ -22,3 +22,31 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
 }
+
+export interface Project {
+  id: string;
+  name: string;
+  url: string;
+  screenshot: string;
+}
+
+export interface VercelApiProject {
+  id: string;
+  name: string;
+}
+
+export interface Deployment {
+  uid: string;
+  url: string;
+}
+
+export interface Domain {
+  name: string;
+}
+
+export interface Project {
+  id: string;
+  name: string;
+  url: string;
+  screenshot: string;
+}
