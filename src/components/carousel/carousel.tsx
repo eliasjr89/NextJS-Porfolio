@@ -41,8 +41,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   };
 
   const { title, button, url } = slide;
-  // Generamos la ruta local de la imagen
-  const src = `/projects/${title}.png`; // Asegúrate de que los nombres coincidan exactamente
+  const src = `/projects/${title}.png`;
 
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
@@ -61,7 +60,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
           transformOrigin: "bottom",
         }}
       >
-        {/* Contenedor con efecto glass */}
         <div
           className="absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden
                      backdrop-blur-md bg-white/20 border border-white/30
@@ -83,12 +81,10 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             priority={current === index}
           />
 
-          {/* Overlay opcional cuando está activo */}
           {current === index && (
             <div className="absolute inset-0 bg-black/20 transition-all duration-1000" />
           )}
 
-          {/* Degradado inferior para legibilidad */}
           <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
         </div>
 
@@ -120,7 +116,7 @@ const CarouselControl = ({
   handleClick,
 }: CarouselControlProps) => (
   <button
-    className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200/60 dark:bg-neutral-800/60 backdrop-blur-md border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+    className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200/60 dark:bg-neutral-800/60 backdrop-blur-md border-3 border-transparent rounded-full focus:border-[#000000] dark:focus:border-[#ffffff] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
       type === "previous" ? "rotate-180" : ""
     }`}
     title={title}
