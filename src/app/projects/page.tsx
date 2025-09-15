@@ -13,6 +13,7 @@ export default function ProjectsPage() {
         const res = await fetch("/api/projects");
         if (!res.ok) throw new Error("Failed to fetch projects");
         const data = await res.json();
+        console.log(data);
         setProjects(data);
       } catch (error) {
         console.error(error);
@@ -31,7 +32,7 @@ export default function ProjectsPage() {
   }));
 
   return (
-    <section className="px-6 py-16 max-w-6xl mx-auto">
+    <section className="px-6 py-16 max-w-6xl mx-auto overflow-hidden">
       <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white">
         My Projects
       </h1>

@@ -19,7 +19,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     };
 
     frameRef.current = requestAnimationFrame(animate);
-
     return () => {
       if (frameRef.current !== null) {
         cancelAnimationFrame(frameRef.current);
@@ -31,7 +30,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const handleMouseMove = (event: React.MouseEvent) => {
     const el = slideRef.current;
     if (!el) return;
-
     const r = el.getBoundingClientRect();
     xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
     yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
@@ -42,7 +40,9 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     yRef.current = 0;
   };
 
-  const { src, button, title, url } = slide;
+  const { title, button, url } = slide;
+  // Generamos la ruta local de la imagen
+  const src = `/projects/${title}.png`; // Asegúrate de que los nombres coincidan exactamente
 
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
@@ -61,28 +61,35 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
           transformOrigin: "bottom",
         }}
       >
+        {/* Contenedor con efecto glass */}
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+          className="absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden
+                     backdrop-blur-md bg-white/20 border border-white/30
+                     shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+                     transition-all duration-150 ease-out"
           style={{
             transform:
               current === index
-                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
+                ? "translate3d(calc(var(--x)/30), calc(var(--y)/30), 0)"
                 : "none",
           }}
         >
-          {src ? (
-            <Image
-              src={src}
-              alt={title ?? ""}
-              fill
-              className="absolute inset-0 object-cover opacity-100 transition-opacity duration-500 ease-in-out"
-              style={{ opacity: current === index ? 1 : 0.5 }}
-              onLoadingComplete={(img) => (img.style.opacity = "1")}
-              priority={current === index}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-gray-800" />
+          <Image
+            src={src}
+            alt={title ?? ""}
+            fill
+            className="absolute inset-0 object-cover opacity-80 mix-blend-overlay transition-opacity duration-500 ease-in-out"
+            style={{ opacity: current === index ? 0.85 : 0.5 }}
+            priority={current === index}
+          />
+
+          {/* Overlay opcional cuando está activo */}
+          {current === index && (
+            <div className="absolute inset-0 bg-black/20 transition-all duration-1000" />
           )}
+
+          {/* Degradado inferior para legibilidad */}
+          <div className="absolute bottom-0 w-full h-1/3 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
         </div>
 
         <article
@@ -90,9 +97,6 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
             current === index ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
-          <h2 className="text-lg md:text-2xl lg:text-4xl font-semibold relative">
-            {title}
-          </h2>
           <div className="flex justify-center">
             <button
               onClick={(e) => {
@@ -116,7 +120,7 @@ const CarouselControl = ({
   handleClick,
 }: CarouselControlProps) => (
   <button
-    className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+    className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200/60 dark:bg-neutral-800/60 backdrop-blur-md border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
       type === "previous" ? "rotate-180" : ""
     }`}
     title={title}
