@@ -6,6 +6,7 @@ export const dictionary = {
     skills: "Habilidades",
     education: "Educación",
     contactTitle: "Contacto",
+    myProjects: "Mis Proyectos",
     skillSections: {
       frontend: "Frontend",
       backend: "Backend",
@@ -107,6 +108,7 @@ export const dictionary = {
     skills: "Skills",
     education: "Education",
     contactTitle: "Contact Me",
+    myProjects: "My Projects",
     skillSections: {
       frontend: "Front-end",
       backend: "Back-end",

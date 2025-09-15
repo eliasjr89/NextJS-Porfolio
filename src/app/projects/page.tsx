@@ -1,11 +1,14 @@
 "use client";
 import Carousel from "@/components/carousel/carousel";
+import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
+import { useTranslation } from "@/hooks/useTranslations";
 import { Project } from "@/types/types";
 import { useEffect, useState } from "react";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchProjects() {
@@ -33,9 +36,11 @@ export default function ProjectsPage() {
 
   return (
     <section className="px-6 py-16 max-w-6xl mx-auto overflow-hidden">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-900 dark:text-white">
-        My Projects
-      </h1>
+      <TextGenerateEffect
+        key={t.myProjects}
+        words={t.myProjects}
+        className="text-3xl text-center mb-8 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+      />
 
       {loading ? (
         <p className="text-center text-gray-500 dark:text-gray-400">
