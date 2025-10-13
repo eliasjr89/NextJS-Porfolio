@@ -18,16 +18,16 @@ export interface LanguageContextProps {
   setLanguage: (lang: Language) => void;
 }
 
+export interface UseGetProjectsReturn {
+  projects: Project[] | null;
+  projectError: string | null;
+  loading: boolean;
+  refreshProject: () => Promise<void>;
+}
+
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
-}
-
-export interface Project {
-  id: string;
-  name: string;
-  url: string;
-  screenshot: string;
 }
 
 export interface VercelApiProject {

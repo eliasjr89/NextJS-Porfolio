@@ -58,8 +58,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
               : "scale(1) rotateX(0deg)",
           transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           transformOrigin: "bottom",
-        }}
-      >
+        }}>
         <div
           className="absolute top-0 left-0 w-full h-full rounded-xl overflow-hidden
                      backdrop-blur-md bg-white/20 border border-white/30
@@ -70,8 +69,7 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
               current === index
                 ? "translate3d(calc(var(--x)/30), calc(var(--y)/30), 0)"
                 : "none",
-          }}
-        >
+          }}>
           <Image
             src={src}
             alt={title ?? ""}
@@ -91,16 +89,14 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         <article
           className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${
             current === index ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-        >
+          }`}>
           <div className="flex justify-center">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 window.open(url, "_blank");
               }}
-              className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
-            >
+              className="mt-6 px-4 py-2 w-fit mx-auto sm:text-sm text-black bg-white h-12 border border-transparent text-xs flex justify-center items-center rounded-2xl hover:shadow-lg transition duration-200 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
               {button}
             </button>
           </div>
@@ -120,8 +116,7 @@ const CarouselControl = ({
       type === "previous" ? "rotate-180" : ""
     }`}
     title={title}
-    onClick={handleClick}
-  >
+    onClick={handleClick}>
     <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
   </button>
 );
@@ -140,14 +135,12 @@ export default function Carousel({ slides }: CarouselProps) {
   return (
     <div
       className="relative w-[70vmin] h-[70vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
+      aria-labelledby={`carousel-heading-${id}`}>
       <ul
         className="absolute flex mx-[-4vmin] transition-transform duration-1000 ease-in-out"
         style={{
           transform: `translateX(-${current * (100 / slides.length)}%)`,
-        }}
-      >
+        }}>
         {slides.map((slide, index) => (
           <Slide
             key={index}
