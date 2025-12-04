@@ -3,6 +3,7 @@ import Carousel from "@/components/carousel/carousel";
 import { TextGenerateEffect } from "@/components/text-generate-effect/TextGenerateEffect";
 import { useGetProjects } from "@/hooks/useGetProject";
 import { useTranslation } from "@/hooks/useTranslations";
+import { Skeleton } from "@/components/ui/Skeleton";
 
 export default function ProjectsPage() {
   const { projects, loading, projectError } = useGetProjects();
@@ -25,9 +26,9 @@ export default function ProjectsPage() {
       />
 
       {loading ? (
-        <p className="text-center text-gray-500 dark:text-gray-400">
-          Loading projects...
-        </p>
+        <div className="relative w-[70vmin] h-[70vmin] mx-auto">
+          <Skeleton className="w-full h-full rounded-xl" variant="card" />
+        </div>
       ) : projectError ? (
         <p className="text-center text-red-500 dark:text-red-400">
           {projectError}

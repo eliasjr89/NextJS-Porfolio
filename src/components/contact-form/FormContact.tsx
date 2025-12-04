@@ -5,14 +5,16 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "./Input";
 import { Textarea } from "./TextArea";
 import { Button } from "../stateful-button/Button";
-import { CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContex";
 import { dictionary } from "../../locale/dictionary";
+import { useToast } from "@/components/ui/Toast";
+import { trackFormSubmission } from "@/lib/analytics";
 
 export default function FormContact() {
   const { language } = useLanguage(); // 'ES' | 'EN'
   const t = dictionary[language].form;
+  const { showToast } = useToast();
 
   const [formData, setFormData] = useState({
     firstname: "",
@@ -21,14 +23,52 @@ export default function FormContact() {
     message: "",
   });
 
+  const [errors, setErrors] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      message: "",
+    };
+
+    if (!formData.firstname.trim()) {
+      newErrors.firstname = "El nombre es requerido";
+    }
+    if (!formData.lastname.trim()) {
+      newErrors.lastname = "El apellido es requerido";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "El email es requerido";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "El email no es válido";
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = "El mensaje es requerido";
+    }
+
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(error => error !== "");
+  };
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      showToast("error", "Por favor, completa todos los campos correctamente");
+      return;
+    }
+
     setLoading(true);
-    setError(false);
 
     try {
       const result = await emailjs.send(
@@ -45,15 +85,14 @@ export default function FormContact() {
       );
       console.log("✅ Email sent successfully", result.text);
 
-      setSuccess(true);
+      trackFormSubmission(true, language);
+      showToast("success", "¡Mensaje enviado exitosamente!");
       setFormData({ firstname: "", lastname: "", email: "", message: "" });
-
-      setTimeout(() => setSuccess(false), 3000);
+      setErrors({ firstname: "", lastname: "", email: "", message: "" });
     } catch (err) {
       console.error("❌ Error sending email:", err);
-      setError(true);
-
-      setTimeout(() => setError(false), 3000);
+      trackFormSubmission(false, language);
+      showToast("error", "Error al enviar el mensaje. Por favor, intenta de nuevo.");
     } finally {
       setLoading(false);
     }
@@ -68,57 +107,6 @@ export default function FormContact() {
 
   return (
     <div className="relative">
-      {(success || error) && (
-        <>
-          <div
-            className="fixed inset-0 z-50 bg-black/30 backdrop-blur-md transition-opacity duration-300"
-            aria-hidden="true"
-          />
-          <div
-            className={cn(
-              "fixed z-60 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
-              "w-[90%] max-w-sm rounded-2xl px-6 py-4 flex flex-col items-center justify-center gap-4",
-              "backdrop-blur-md animate-fade-in transition-transform duration-300",
-              "bg-white/20 border border-white/30 shadow-[0_0_40px_rgba(255,255,255,0.6)]",
-              "text-white drop-shadow-[0_0_6px_rgba(0,0,0,0.5)]",
-              "dark:bg-black/20 dark:border dark:border-[#ff00ff] dark:shadow-[0_0_30px_#ff00ff]",
-              "dark:text-[#ff00ff] dark:drop-shadow-[0_0_4px_#ff00ff]"
-            )}
-            role="alert"
-            aria-live="assertive"
-          >
-            {success && (
-              <>
-                <CheckCircle
-                  size={48}
-                  className="text-white dark:text-[#ff00ff]"
-                />
-                <p className="text-center text-lg font-semibold">{t.success}</p>
-              </>
-            )}
-            {error && (
-              <>
-                <AlertCircle
-                  size={48}
-                  className="text-white dark:text-red-600"
-                />
-                <p className="text-center text-lg font-semibold">{t.error}</p>
-              </>
-            )}
-            <button
-              onClick={() => {
-                setSuccess(false);
-                setError(false);
-              }}
-              className="mt-2 hover:scale-110 transition-transform"
-              aria-label={t.closeAlert}
-            >
-              <XCircle size={28} className="text-white dark:text-red-600" />
-            </button>
-          </div>
-        </>
-      )}
-
       <div className="shadow-input mx-auto w-full max-w-md rounded-none bg-white/20 dark:bg-black/20 backdrop-blur-md p-4 md:rounded-2xl md:p-8">
         <form className="my-8" onSubmit={handleSubmit}>
           <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
@@ -131,8 +119,15 @@ export default function FormContact() {
                 type="text"
                 value={formData.firstname}
                 onChange={handleChange}
+                aria-invalid={errors.firstname ? "true" : "false"}
+                aria-describedby={errors.firstname ? "firstname-error" : undefined}
                 required
               />
+              {errors.firstname && (
+                <span id="firstname-error" role="alert" className="text-sm text-red-600 dark:text-red-400 mt-1">
+                  {errors.firstname}
+                </span>
+              )}
             </LabelInputContainer>
 
             <LabelInputContainer>
@@ -144,8 +139,15 @@ export default function FormContact() {
                 type="text"
                 value={formData.lastname}
                 onChange={handleChange}
+                aria-invalid={errors.lastname ? "true" : "false"}
+                aria-describedby={errors.lastname ? "lastname-error" : undefined}
                 required
               />
+              {errors.lastname && (
+                <span id="lastname-error" role="alert" className="text-sm text-red-600 dark:text-red-400 mt-1">
+                  {errors.lastname}
+                </span>
+              )}
             </LabelInputContainer>
           </div>
 
@@ -158,8 +160,15 @@ export default function FormContact() {
               type="email"
               value={formData.email}
               onChange={handleChange}
+              aria-invalid={errors.email ? "true" : "false"}
+              aria-describedby={errors.email ? "email-error" : undefined}
               required
             />
+            {errors.email && (
+              <span id="email-error" role="alert" className="text-sm text-red-600 dark:text-red-400 mt-1">
+                {errors.email}
+              </span>
+            )}
           </LabelInputContainer>
 
           <LabelInputContainer className="mb-4">
@@ -170,8 +179,15 @@ export default function FormContact() {
               placeholder={t.placeholder.message}
               value={formData.message}
               onChange={handleChange}
+              aria-invalid={errors.message ? "true" : "false"}
+              aria-describedby={errors.message ? "message-error" : undefined}
               required
             />
+            {errors.message && (
+              <span id="message-error" role="alert" className="text-sm text-red-600 dark:text-red-400 mt-1">
+                {errors.message}
+              </span>
+            )}
           </LabelInputContainer>
 
           <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />

@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "home": {
+    "greeting": "Hola, soy",
+    "title": "Full Stack Developer",
+    "description": "Especializado en desarrollo frontend con React, Next.js y TypeScript"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "experience": "Experiencia",
+    "education": "Educación"
+  },
+  "skills": {
+    "title": "Mis Habilidades"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "loading": "Cargando proyectos...",
+    "error": "Error al cargar proyectos",
+    "tryProject": "Ver Proyecto"
+  },
+  "contact": {
+    "title": "Contacto",
+    "form": {
+      "firstname": "Nombre",
+      "lastname": "Apellido",
+      "email": "Email",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje",
+      "success": "¡Mensaje enviado exitosamente!",
+      "error": "Error al enviar el mensaje",
+      "validation": {
+        "required": "Este campo es requerido",
+        "invalidEmail": "Email no válido"
+      },
+      "placeholder": {
+        "firstname": "Juan",
+        "lastname": "Pérez",
+        "email": "juan@ejemplo.com",
+        "message": "Tu mensaje aquí..."
+      }
+    }
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados"
+  },
+  "theme": {
+    "toggle": "Cambiar tema"
+  },
+  "language": {
+    "toggle": "Cambiar idioma",
+    "spanish": "Español",
+    "english": "Inglés"
+  },
+  "accessibility": {
+    "skipToMain": "Saltar al contenido principal",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú"
+  }
+}

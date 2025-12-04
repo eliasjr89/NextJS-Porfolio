@@ -9,6 +9,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
   const xRef = useRef(0);
   const yRef = useRef(0);
   const frameRef = useRef<number | null>(null);
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
 
   useEffect(() => {
     const animate = () => {
@@ -40,6 +42,24 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
     yRef.current = 0;
   };
 
+  const handleTouchStart = (event: React.TouchEvent) => {
+    touchStartX.current = event.touches[0].clientX;
+    touchStartY.current = event.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent) => {
+    const touchEndX = event.changedTouches[0].clientX;
+    const touchEndY = event.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX.current;
+    const deltaY = touchEndY - touchStartY.current;
+
+    // Swipe detection (minimum 50px movement)
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      // Horizontal swipe detected
+      event.preventDefault();
+    }
+  };
+
   const { title, button, url } = slide;
   const src = `/projects/${title}.png`;
 
@@ -51,6 +71,8 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         onClick={() => handleSlideClick(index)}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         style={{
           transform:
             current !== index

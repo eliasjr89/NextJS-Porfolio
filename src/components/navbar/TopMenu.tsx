@@ -23,13 +23,18 @@ export default function TopMenu() {
   if (!hasMounted) return null;
 
   return (
-    <div className="w-full bg-gray-100/10 dark:bg-black/10 backdrop-blur-md border-b border-gray-700 sticky top-4 z-30 rounded-md mx-auto max-w-xl transition-colors duration-300 ease-in-out">
+    <nav 
+      className="w-full bg-gray-200/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-300 dark:border-gray-700 sticky top-4 z-30 rounded-md mx-auto max-w-xl transition-colors duration-300 ease-in-out"
+      aria-label="Navegación principal"
+    >
       <div className="flex justify-center py-2">
         <button
           onClick={handleToggle}
-          className="text-black dark:text-white cursor-pointer p-2 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-full transition-colors duration-300 ease-in-out"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          title={isOpen ? "Close menu" : "Open menu"}
+          className="text-black dark:text-white cursor-pointer p-2 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-full transition-colors duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2"
+          aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={isOpen}
+          aria-controls="main-navigation"
+          title={isOpen ? "Cerrar menú" : "Abrir menú"}
         >
           <motion.div
             animate={{ rotate: isOpen ? 0 : 180 }}
@@ -43,11 +48,13 @@ export default function TopMenu() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="main-navigation"
             className="flex flex-wrap justify-center gap-4 p-2"
             initial={{ opacity: 0, maxHeight: 0 }}
             animate={{ opacity: 1, maxHeight: 160 }}
             exit={{ opacity: 0, maxHeight: 0 }}
             transition={{ duration: 0.5 }}
+            role="menubar"
           >
             <NavButton href="/" label="Inicio" icon={FiHome} />
             <NavButton href="/about" label="About Me" icon={FiUser} />
@@ -59,6 +66,6 @@ export default function TopMenu() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </nav>
   );
 }
